@@ -66,13 +66,13 @@ let todos = [
 ]
 
 let count = 1;
+let todosCount = todos.length;
 
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   const reqUrl = url.parse(req.url, true);
   const limit = reqUrl.query.limit || todos.length;
   console.log(`server hit count: ${count}. response limit: ${limit}. request: ${req.method}`);
-  const StringDecoder = require('string_decoder').StringDecoder;
 
   if (req.method === 'OPTIONS') {
     console.log("options...");
@@ -104,7 +104,7 @@ const server = http.createServer((req, res) => {
           var completed = whole.completed;
           var todo = {
             "userId": 2,
-            "id": todos.length + 1,
+            "id": ++todosCount,
             title,
             completed
           };

@@ -42,8 +42,11 @@ export default {
   created() {
     axios.get("http://localhost:3000/todo")
     // fetch("https://jsonplaceholder.typicode.com/todos")
-    .then(response => this.todos = response.data || {"id":0, "title": "Network Unavailable", "completed": false})
-    .catch(error => console.error(error));
+    .then(response => this.todos = response.data)
+    .catch(error => {
+      console.error(error);
+      this.todos = [{"id":0, "title": "Network Unavailable", "completed": false}];
+    });
   }
 }
 </script>
